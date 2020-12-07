@@ -14,7 +14,7 @@ jobs:
       - name: Test
         id: test
         run: |
-          git diff dev...devdev --diff-filter=ACDMR
+          git diff origin/dev..devdev --diff-filter=ACDMR
           echo "Pull request's base branch is: ${BASE_BRANCH}"
           echo ${GITHUB_REF#refs/heads/}"
         env:
