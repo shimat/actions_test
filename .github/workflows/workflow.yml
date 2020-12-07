@@ -17,8 +17,6 @@ jobs:
           git branch -a
           git fetch
           git branch -a
-          #git diff origin/dev..devdev --diff-filter=ACDMR
-          echo "Pull request's base branch is: ${BASE_BRANCH}"
-          echo ${GITHUB_REF#refs/heads/}
-        env:
-          BASE_BRANCH: ${{ github.base_ref }}
+          git diff remotes/origin/dev..devdev --diff-filter=ACDMR
+          echo "Pull request's base branch is: ${{ github.base_ref }}"
+          echo "This branch is ${GITHUB_REF#refs/heads/}"
