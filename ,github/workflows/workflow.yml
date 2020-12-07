@@ -1,0 +1,21 @@
+name: "Workflow"
+
+on: push
+
+jobs:
+  foo:
+    name: "Foo"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Test
+        id: test
+        run: |
+          git diff dev...devdev --diff-filter=ACDMR
+          echo "Pull request's base branch is: ${BASE_BRANCH}"
+          echo ${GITHUB_REF#refs/heads/}"
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
