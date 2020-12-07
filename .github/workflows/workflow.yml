@@ -15,8 +15,10 @@ jobs:
         id: test
         run: |
           git branch
+          git fetch
+          git branch
           #git diff origin/dev..devdev --diff-filter=ACDMR
           echo "Pull request's base branch is: ${BASE_BRANCH}"
-          echo ${GITHUB_REF#refs/heads/}"
+          echo ${GITHUB_REF#refs/heads/}
         env:
           BASE_BRANCH: ${{ github.base_ref }}
