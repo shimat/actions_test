@@ -1,6 +1,8 @@
 name: "Workflow"
 
-on: push
+on:
+  pull_request:
+    types: [synchronize, opened]
 
 jobs:
   foo:
@@ -17,6 +19,6 @@ jobs:
           git branch -a
           git fetch
           git branch -a
-          git diff remotes/origin/dev..devdev --diff-filter=ACDMR
+          git diff remotes/origin/dev..devdev --diff-filter=ACDMR --name-only
           echo "Pull request's base branch is: ${{ github.base_ref }}"
           echo "This branch is ${GITHUB_REF#refs/heads/}"
