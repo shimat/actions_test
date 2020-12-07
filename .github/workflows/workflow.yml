@@ -35,11 +35,11 @@ jobs:
           echo $diffs
           
           found="false"
-          for d in $diffs; do
-            dir=$(echo $d | awk -F/ '{ if(NF>=2){printf("%s/%s",$1,$2)} }')
+          for diff in $diffs; do
+            dir=$(echo $diff | awk -F/ '{ if(NF>=2){printf("%s/%s",$1,$2)} }')
             if [ -n "$dir" ]; then
               echo $dir
-              if ["$dir" = "${{ matrix.dir }}"]; then
+              if [ "$dir" = "${{ matrix.dir }}" ]; then
                 found="true"
                 break
               fi
