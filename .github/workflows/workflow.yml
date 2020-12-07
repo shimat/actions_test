@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         dir:
-          - 'clean-user-directory/gees-dev'
-          - 'clean-user-directory/gees-staging'
-          - 'age-predictor/gees-production'
+          - 'bbb/dev'
+          - 'bbb/staging'
+          - 'aaa/production'
       fail-fast: true
 
     defaults:
