@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         dir:
+          - 'aaa/production'
           - 'bbb/dev'
           - 'bbb/staging'
-          - 'aaa/production'
       fail-fast: true
 
     steps:
@@ -29,5 +29,20 @@ jobs:
           git branch -a
           echo "Pull request's base branch is: ${{ github.base_ref }}"
           echo "This branch is ${GITHUB_REF#refs/heads/}"
-          git diff remotes/origin/${{ github.base_ref }}..HEAD --diff-filter=ACDMR --name-only
+          git diff 
           
+          diffs=$(git diff remotes/origin/${{ github.base_ref }}..HEAD --diff-filter=ACDMR --name-only)
+          echo $diffs
+          
+          found="false"
+          for d in $diffs; do
+            dir=$(echo $d | awk -F/ '{ if(NF>=2){printf("%s/%s",$1,$2)} }')
+            if [ -n "$dir" ]; then
+              echo $dir
+              if ["$dir" = "${{ matrix.dir }}"]; then
+                found="true"
+                break
+              fi
+            fi
+          done
+          echo $found
