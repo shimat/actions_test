@@ -48,7 +48,7 @@ jobs:
           echo $found
           #echo "::set-output name=is_targetdirectory::$found"
           if [ "$found" != "true" ]; then
-            cd /hoge/piyo
+            exit 1
           fi
 
       - name: Proc1
