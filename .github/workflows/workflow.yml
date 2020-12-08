@@ -21,8 +21,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Test
-        id: test
+      - name: Check Target Directory
+        id: check_directory
         run: |
           echo ${{ matrix.dir }}
           git fetch
@@ -46,3 +46,14 @@ jobs:
             fi
           done
           echo $found
+          echo "::set-output name=is_targetdirectory::$found"
+
+      - name: Proc1
+        if: ${{ steps.check_directory.outputs.is_targetdirectory }} == "true"
+        run: |
+          echo "Proc1"
+
+      - name: Proc2
+        if: ${{ steps.check_directory.outputs.is_targetdirectory }} == "true"
+        run: |
+          echo "Proc2"
