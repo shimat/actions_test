@@ -46,16 +46,19 @@ jobs:
             fi
           done
           echo $found
-          echo "::set-output name=is_targetdirectory::$found"
+          #echo "::set-output name=is_targetdirectory::$found"
+          if [ "$found" != "true" ]; then
+            cd /hoge/piyo
+          fi
 
       - name: Proc1
-        if: steps.check_directory.outputs.is_targetdirectory == 'true'
+        #if: steps.check_directory.outputs.is_targetdirectory == 'true'
         run: |
-          echo ${{ steps.check_directory.outputs.is_targetdirectory }}
+          #echo ${{ steps.check_directory.outputs.is_targetdirectory }}
           echo "Proc1"
 
       - name: Proc2
-        if: steps.check_directory.outputs.is_targetdirectory == 'true'
+        #if: steps.check_directory.outputs.is_targetdirectory == 'true'
         run: |
-          echo ${{ steps.check_directory.outputs.is_targetdirectory }}
+          #echo ${{ steps.check_directory.outputs.is_targetdirectory }}
           echo "Proc2"
