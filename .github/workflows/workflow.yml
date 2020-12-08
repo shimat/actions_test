@@ -49,13 +49,13 @@ jobs:
           echo "::set-output name=is_targetdirectory::$found"
 
       - name: Proc1
-        if: steps.check_directory.outputs.is_targetdirectory == "true"
+        if: steps.check_directory.outputs.is_targetdirectory == 'true'
         run: |
           echo ${{ steps.check_directory.outputs.is_targetdirectory }}
           echo "Proc1"
 
       - name: Proc2
-        if: steps.check_directory.outputs.is_targetdirectory == "true"
+        if: steps.check_directory.outputs.is_targetdirectory == 'true'
         run: |
           echo ${{ steps.check_directory.outputs.is_targetdirectory }}
           echo "Proc2"
